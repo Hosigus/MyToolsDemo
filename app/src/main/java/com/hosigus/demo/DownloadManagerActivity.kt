@@ -38,6 +38,7 @@ class DownloadManagerActivity : AppCompatActivity() {
                     }
 
                     override fun onSuccess(download:File) {
+                        show("download success!")
                         // you may want to try x.jpg/x.png
 //                        iv_image.background = Drawable.createFromPath(download.absolutePath)
                         val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName)
@@ -62,6 +63,10 @@ class DownloadManagerActivity : AppCompatActivity() {
                 .callback(object : PermissionCallback {
                     override fun onGranted() {
                         manager.download()
+                    }
+
+                    override fun onDenied(DeniedPermissions: Array<String>) {
+                        show("come on,I need it")
                     }
                 }))
 
